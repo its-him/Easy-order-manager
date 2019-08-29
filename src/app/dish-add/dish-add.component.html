@@ -1,0 +1,79 @@
+<div class="container">
+  <h3 class="d-flex justify-content-center header text-uppercase">Add dish</h3>
+  <div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-4">
+      <form [formGroup]="dishForm" class="form">
+        <div class="form-group">
+          <div class="d-flex">
+            <label class="lbl" for="dishName">Name</label>
+            <div *ngIf="dishName.invalid && (dishName.dirty || dishName.touched)" class="ml-auto">
+              <span class="small text-danger" *ngIf="dishName.errors.required">
+                * required.
+              </span>
+            </div>
+          </div>
+          <input type="text" class="form-control" formControlName="dishName" placeholder="Ex: Rice"
+            [ngClass]="{'invalid': !dishName.valid && dishName.touched}">
+        </div>
+        <div class="form-group">
+          <div class="d-flex">
+            <label class="lbl" for="dishCuisine">Cuisine</label>
+            <div *ngIf="dishCuisine.invalid && (dishCuisine.dirty || dishCuisine.touched)" class="ml-auto">
+              <span class="small text-danger" *ngIf="dishCuisine.errors.required">
+                * required.
+              </span>
+            </div>
+          </div>
+          <input type="text" class="form-control" formControlName="dishCuisine" placeholder="Ex: Indian"
+            [ngClass]="{'invalid': !dishCuisine.valid && dishCuisine.touched}">
+        </div>
+        <div class="form-group">
+          <div class="d-flex">
+            <label class="lbl" for="dishPrice">Price</label>
+            <div *ngIf="dishPrice.invalid && (dishPrice.dirty || dishPrice.touched)" class="ml-auto">
+              <span class="small text-danger" *ngIf="dishPrice.errors.required">
+                * required.
+              </span>
+            </div>
+          </div>
+          <input type="text" class="form-control" formControlName="dishPrice" placeholder="Ex: 250.0"
+            [ngClass]="{'invalid': !dishPrice.valid && dishPrice.touched}">
+        </div>
+        <div class="form-group">
+          <div class="d-flex">
+            <label class="lbl" for="dishDescription">Description</label>
+            <div *ngIf="dishDescription.invalid && (dishDescription.dirty || dishDescription.touched)" class="ml-auto">
+              <span class="small text-danger" *ngIf="dishDescription.errors.required">
+                * required.
+              </span>
+            </div>
+          </div>
+          <textarea class="form-control" formControlName="dishDescription" placeholder="Ex: Rice"
+            [ngClass]="{'invalid': !dishDescription.valid && dishDescription.touched}"></textarea>
+        </div>
+        <div class="form-group">
+          <div class="d-flex">
+            <label class="lbl" for="dishImage">Image</label>
+            <div *ngIf="dishImage.invalid && (dishImage.dirty || dishImage.touched)" class="ml-auto">
+              <span class="small text-danger" *ngIf="dishImage.errors.required">
+                * required.
+              </span>
+            </div>
+          </div>
+          <div class="input-group mb-3 clickable" ngxFilePicker accept="application/image"
+            (filePick)="onReportPicked($event)">
+            <!-- (filePick)="onReportPicked($event)" -->
+            <input type="text" class="form-control" formControlName="dishImage" placeholder="Select Image">
+            <button class="btn btn-rounded ml-2" id="">Select</button>
+          </div>
+
+        </div>
+        <div class="d-flex justify-content-center btn-add-div mt-5">
+          <button class="btn btn-add">ADD</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-5"></div>
+  </div>
+</div>

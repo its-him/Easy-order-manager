@@ -1,0 +1,55 @@
+.container {
+  margin-top: 6rem;
+}
+
+.header {
+  color: #105e62;
+}
+
+
+.invalid {
+  border: red 1px solid;
+}
+
+.form-control {
+  border-radius: 1rem !important;
+}
+
+.lbl {
+  color: #49beb7;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.form-group,
+.btn-add-div {
+  width: 150%;
+}
+
+.btn-add {
+  border: #1fab89 1px solid;
+  border-radius: 1rem;
+  width: 50%;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.btn-add :hover {
+  color: white;
+  background-color: #1fab89;
+  /* border: #1fab89 1px solid;
+    border-radius: 1rem;
+    width: 50%;
+    font-weight: 700;
+    letter-spacing: 2px; */
+}
+
+.btn-rounded {
+  border: #1fab89 1px solid;
+  border-radius: 1rem;
+  font-weight: 500;
+}
+
+textarea {
+  resize: none;
+}

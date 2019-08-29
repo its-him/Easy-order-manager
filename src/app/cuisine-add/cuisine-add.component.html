@@ -1,0 +1,49 @@
+<div class="container">
+  <h3 class="d-flex justify-content-center header text-uppercase">Add Cuisine</h3>
+  <div class="row mt-5">
+    <div class="col-2"></div>
+    <div class="col-6">
+
+      <div class="d-flex justify-content-center">
+        <form [formGroup]="CuisineForm" class="form">
+          <div class="form-group">
+            <div class="d-flex">
+              <label class="lbl" for="cuisineName">Cuisine Name</label>
+              <div *ngIf="cuisineName.invalid && (cuisineName.dirty || cuisineName.touched)" class="ml-auto">
+                <span class="small text-danger" *ngIf="cuisineName.errors.required">
+                  * required.
+                </span>
+              </div>
+            </div>
+            <input type="text" class="form-control" formControlName="cuisineName" placeholder="Ex: Indian"
+              [ngClass]="{'invalid': !cuisineName.valid && cuisineName.touched}">
+          </div>
+
+          <div class="form-group mt-4">
+            <div class="d-flex">
+              <label class="lbl" for="cuisineImage">Cuisine Image</label>
+              <div *ngIf="cuisineImage.invalid && (cuisineImage.dirty || cuisineImage.touched)" class="ml-auto">
+                <span class="small text-danger" *ngIf="cuisineImage.errors.required">
+                  * required.
+                </span>
+              </div>
+            </div>
+            <div class="input-group mb-3 clickable" ngxFilePicker accept="application/image"
+              (filePick)="onReportPicked($event)">
+              <!-- (filePick)="onReportPicked($event)" -->
+              <input type="text" class="form-control" formControlName="cuisineImage" placeholder="Select Image">
+              <button class="btn btn-rounded ml-2" id="">Select</button>
+            </div>
+
+          </div>
+          <div class="d-flex justify-content-center btn-add-div mt-5">
+            <button class="btn btn-add">ADD</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <div class="col-4"></div>
+  </div>
+
+</div>

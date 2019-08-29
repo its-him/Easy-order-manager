@@ -1,0 +1,18 @@
+.container {
+  margin-top: 6rem;
+}
+
+.active {
+  color: #105e62 !important;
+  font-weight: 700;
+}
+
+.nav-link {
+  letter-spacing: 2px;
+  color: #407088;
+  cursor: pointer;
+}
+
+.nav-item {
+  margin-right: 3rem;
+}

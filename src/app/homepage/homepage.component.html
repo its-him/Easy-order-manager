@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="tabs">
+    <ul class="nav nav-tabs">
+      <li class="nav-item" *ngFor="let options of navOptions"
+        [ngClass]=" {'active':options==selectNav,'deactive':options !=selectNav}" (click)="selectTab(options)">
+        <a class=" nav-link text-uppercase">{{ options }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <cuisine *ngIf="selectNav === 'cuisine'"></cuisine>
+  <dish *ngIf="selectNav === 'dish'"></dish>
+</div>
