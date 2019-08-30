@@ -1,3 +1,4 @@
+import { CuisineService } from './../services/cuisine.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -5,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Cuisine } from '../cuisine-add/cuisine-add.component';
 import { ReadFile } from 'ngx-file-helpers';
+import { Observable } from 'rxjs';
 
 export interface Dish {
   name: String,
@@ -21,14 +23,15 @@ export interface Dish {
 })
 export class DishAddComponent implements OnInit {
   private cuisineCollection: AngularFirestoreCollection<Cuisine>;
-  cuisine: Cuisine[];
+  cuisine: Observable<Cuisine[]>;
   selectedCuisine;
   image: File;
 
   dishForm: FormGroup;
   constructor(
     private storage: AngularFireStorage,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private cuisineService: CuisineService
   ) { }
 
   ngOnInit() {
@@ -57,11 +60,8 @@ export class DishAddComponent implements OnInit {
     console.log(this.selectedCuisine.name);
   }
 
-  getCusine() {
-    this.cuisineCollection = this.afs.collection<Cuisine>('cuisine');
-    this.cuisineCollection.valueChanges().subscribe(cusine => {
-      this.cuisine = cusine;
-    });
+  async getCusine() {
+    this.cuisine = await this.cuisineService.getCuisine();
   }
 
   submit() {

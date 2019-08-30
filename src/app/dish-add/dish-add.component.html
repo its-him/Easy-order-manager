@@ -28,7 +28,7 @@
           <select [(ngModel)]="selectedCuisine" placeholder="Select" class="form-control" formControlName="dishCuisine"
             (change)="selected()" [ngClass]="{'invalid': !dishCuisine.valid && dishCuisine.touched}">
             <option [ngValue]="undefined" disabled selected>Select Cuisine</option>
-            <option *ngFor="let item of cuisine" [ngValue]="item">{{item.name}}</option>
+            <option *ngFor="let item of cuisine | async" [ngValue]="item">{{item.name}}</option>
           </select>
         </div>
         <div class="form-group">
