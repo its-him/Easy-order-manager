@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
+import { NgxFileHelpersModule } from 'ngx-file-helpers';
 
 // COMPONENTS
 import { NavbarComponent } from './navbar/navbar.component';
@@ -40,7 +41,8 @@ import { DishAddComponent } from './dish-add/dish-add.component';
     AngularFireAuthModule,
     AngularFireStorageModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxFileHelpersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
