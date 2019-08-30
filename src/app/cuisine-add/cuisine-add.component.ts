@@ -50,11 +50,8 @@ export class CuisineAddComponent implements OnInit {
 
         const cuisine = this.afs.collection<Cuisine>('cuisine');
         cuisine.add({ name: this.cuisineName.value, imagePath: path }).then(b => {
-          this.cuisineName.setValue("");
-          this.cuisineImage.setValue("");
-
+          this.CuisineForm.reset();
         });
-
       })
     });
 

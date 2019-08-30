@@ -25,8 +25,11 @@
               </span>
             </div>
           </div>
-          <input type="text" class="form-control" formControlName="dishCuisine" placeholder="Ex: Indian"
-            [ngClass]="{'invalid': !dishCuisine.valid && dishCuisine.touched}">
+          <select [(ngModel)]="selectedCuisine" placeholder="Select" class="form-control" formControlName="dishCuisine"
+            (change)="selected()" [ngClass]="{'invalid': !dishCuisine.valid && dishCuisine.touched}">
+            <option [ngValue]="undefined" disabled selected>Select Cuisine</option>
+            <option *ngFor="let item of cuisine" [ngValue]="item">{{item.name}}</option>
+          </select>
         </div>
         <div class="form-group">
           <div class="d-flex">
@@ -35,9 +38,12 @@
               <span class="small text-danger" *ngIf="dishPrice.errors.required">
                 * required.
               </span>
+              <span *ngIf="dishPrice.errors.min" class="small text-danger">
+                * should be > 0.
+              </span>
             </div>
           </div>
-          <input type="text" class="form-control" formControlName="dishPrice" placeholder="Ex: 250.0"
+          <input type="number" min="0" class="form-control" formControlName="dishPrice" placeholder="Ex: 250.0"
             [ngClass]="{'invalid': !dishPrice.valid && dishPrice.touched}">
         </div>
         <div class="form-group">
@@ -61,16 +67,14 @@
               </span>
             </div>
           </div>
-          <div class="input-group mb-3 clickable" ngxFilePicker accept="application/image"
-            (filePick)="onReportPicked($event)">
-            <!-- (filePick)="onReportPicked($event)" -->
+          <div class="input-group mb-3 clickable" ngxFilePicker accept="image/*" (filePick)="onImageSelect($event)">
             <input type="text" class="form-control" formControlName="dishImage" placeholder="Select Image">
             <button class="btn btn-rounded ml-2" id="">Select</button>
           </div>
 
         </div>
         <div class="d-flex justify-content-center btn-add-div mt-5">
-          <button class="btn btn-add">ADD</button>
+          <button class="btn btn-add" [disabled]="dishForm.invalid" (click)="submit()">ADD</button>
         </div>
       </form>
     </div>
