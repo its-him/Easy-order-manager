@@ -1,0 +1,52 @@
+.cuisine-container {
+  border: #207561 1px solid;
+  border-radius: 0.3rem;
+  width: 45%;
+  height: 9rem;
+  padding: 1rem;
+}
+
+.col-4,
+.col-8 {
+  height: 6rem;
+}
+
+.img-div {
+  /* border: red 1px solid; */
+  height: 100%;
+  width: 100%;
+}
+
+.img-div img {
+  height: 100%;
+  width: 100%;
+}
+
+
+.cuisine-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.btn-edit {
+  border: #207561 1px solid;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.btn-edit :hover {
+  background-color: #207561;
+  color: white;
+}
+
+.btn-delete {
+  border: #ed1250 1px solid;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.btn-delete :hover {
+  background-color: #ed1250;
+  color: white;
+}

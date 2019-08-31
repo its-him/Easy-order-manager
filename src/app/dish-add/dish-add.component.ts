@@ -2,7 +2,7 @@ import { CuisineService } from './../services/cuisine.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Cuisine } from '../cuisine-add/cuisine-add.component';
 import { ReadFile } from 'ngx-file-helpers';
@@ -22,7 +22,6 @@ export interface Dish {
   styleUrls: ['./dish-add.component.css']
 })
 export class DishAddComponent implements OnInit {
-  private cuisineCollection: AngularFirestoreCollection<Cuisine>;
   cuisine: Observable<Cuisine[]>;
   selectedCuisine;
   image: File;

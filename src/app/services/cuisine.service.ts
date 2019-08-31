@@ -13,9 +13,13 @@ export class CuisineService {
   constructor(private afs: AngularFirestore) { }
 
 
-  async getCuisine() {
+  async getAllCuisine() {
     this.cuisineCollection = this.afs.collection<Cuisine>('cuisine');
-    const cuisine = await this.cuisineCollection.valueChanges();
+    const cuisine = await this.cuisineCollection.snapshotChanges();
     return cuisine;
+  }
+
+  getCuisine(id: String) {
+    return this.afs.doc<Cuisine>('cuisine/' + id).snapshotChanges();
   }
 }

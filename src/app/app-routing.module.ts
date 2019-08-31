@@ -6,7 +6,7 @@ import { DishAddComponent } from './dish-add/dish-add.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
-  { path: 'cuisine', component: CuisineAddComponent },
+  { path: 'cuisine/:id', component: CuisineAddComponent },
   { path: 'dish', component: DishAddComponent },
 ];
 

@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center mt-3">
+  <div class="cuisine-container">
+    <div class="row mt-1">
+      <div class="col-4 ">
+        <div class="img-div">
+          <img class="d-flex align-items-center" [src]="cuisine.payload.doc.get('imagePath')" alt="">
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="cuisine-name">
+          {{cuisine.payload.doc.get('name')}}
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <button class="btn btn-edit" [routerLink]="['/cuisine',cuisine.payload.doc.id]">EDIT</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-delete" (click)="delete()">DELETE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,12 @@
+import { CuisineService } from './../services/cuisine.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { ReadFile } from 'ngx-file-helpers';
 import { Observable } from 'rxjs';
 
 import { AngularFireStorage } from '@angular/fire/storage';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentSnapshot } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 export interface Cuisine {
   name: String,
@@ -18,13 +20,19 @@ export interface Cuisine {
 })
 export class CuisineAddComponent implements OnInit {
 
+
   CuisineForm: FormGroup;
   image: File;
+  id: String;
+  cuisinePayload: DocumentSnapshot<Cuisine>;
 
   constructor(
     private storage: AngularFireStorage,
-    private afs: AngularFirestore) {
-
+    private afs: AngularFirestore,
+    private route: ActivatedRoute,
+    private cuisineService: CuisineService) {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getCuisine();
   }
 
   ngOnInit() {
@@ -54,6 +62,13 @@ export class CuisineAddComponent implements OnInit {
         });
       })
     });
+  }
 
+  async getCuisine() {
+    (await this.cuisineService.getCuisine(this.id)).subscribe(cuisine => {
+      this.cuisinePayload = cuisine.payload;
+      console.log(cuisine.payload.get('name'));
+      cuisine.payload.ref.update({});
+    });
   }
 }

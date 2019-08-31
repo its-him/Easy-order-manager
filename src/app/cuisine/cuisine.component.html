@@ -1,32 +1,11 @@
 <div class="container">
   <div class="d-flex flex-row-reverse">
-    <button class="btn btn-add text-uppercase" [routerLink]="['/cuisine']" routerLinkActive="router-link-active">Add
+    <button class="btn btn-add text-uppercase" [routerLink]="['/cuisine','new']" routerLinkActive="router-link-active">Add
       cuisine</button>
   </div>
-  <div class="d-flex justify-content-center mt-3">
-    <div class="cuisine-container">
-      <div class="row mt-1">
-        <div class="col-4 ">
-          <div class="img-div">
-            <img class="d-flex align-items-center"
-              src="https://firebasestorage.googleapis.com/v0/b/too-easy-order.appspot.com/o/images%2Fchickentikka.jpg?alt=media&token=e6755a5a-0433-4b24-ba12-76dc4b2d0038"
-              alt="">
-          </div>
-        </div>
-        <div class="col-8">
-          <div class="cuisine-name">
-            Indian
-          </div>
-          <div class="row mt-3">
-            <div class="col">
-              <button class="btn btn-edit">EDIT</button>
-            </div>
-            <div class="col">
-              <button class="btn btn-delete">DELETE</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+  <div *ngFor="let cuisine of cuisines | async">
+    <cuisine-box [cuisine]="cuisine"></cuisine-box>
   </div>
+
 </div>
