@@ -7,7 +7,7 @@ import { DishAddComponent } from './dish-add/dish-add.component';
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'cuisine/:id', component: CuisineAddComponent },
-  { path: 'dish', component: DishAddComponent },
+  { path: 'dish/:id', component: DishAddComponent },
 ];
 
 @NgModule({

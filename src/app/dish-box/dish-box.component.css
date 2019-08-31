@@ -1,0 +1,39 @@
+.card-body {
+  padding: 1rem;
+}
+
+.btn-edit {
+  border: #207561 1px solid;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.btn-edit :hover {
+  background-color: #207561;
+  color: white;
+}
+
+.btn-delete {
+  border: #ed1250 1px solid;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.btn-delete :hover {
+  background-color: #ed1250;
+  color: white;
+}
+
+
+.btn {
+  height: 90%;
+  font-size: 70%;
+}
+
+.img-div {
+  height: 14rem;
+}
+
+.img-div img {
+  height: 100%;
+}

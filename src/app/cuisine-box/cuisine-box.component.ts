@@ -13,7 +13,6 @@ export class CuisineBoxComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log();
   }
 
   delete() {

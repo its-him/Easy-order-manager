@@ -32,14 +32,25 @@ export class CuisineAddComponent implements OnInit {
     private route: ActivatedRoute,
     private cuisineService: CuisineService) {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.getCuisine();
+    if (this.id != 'new')
+      this.getCuisine();
   }
 
   ngOnInit() {
-    this.CuisineForm = new FormGroup({
-      'cuisineName': new FormControl('', Validators.required),
-      'cuisineImage': new FormControl('', Validators.required)
-    });
+    this.initialize();
+  }
+
+  initialize() {
+    if (this.id == 'new')
+      this.CuisineForm = new FormGroup({
+        'cuisineName': new FormControl('', Validators.required),
+        'cuisineImage': new FormControl('', Validators.required)
+      });
+    if (this.cuisinePayload)
+      this.CuisineForm = new FormGroup({
+        'cuisineName': new FormControl(this.cuisinePayload.get('name'), Validators.required),
+        'cuisineImage': new FormControl(this.cuisinePayload.get('imagePath'), Validators.required)
+      });
   }
 
   get cuisineName() { return this.CuisineForm.get('cuisineName'); }
@@ -51,24 +62,40 @@ export class CuisineAddComponent implements OnInit {
   }
 
   submit() {
-    const ref = this.storage.ref('images/' + this.cuisineImage.value);
-
-    ref.put(this.image).then(a => {
-      ref.getDownloadURL().subscribe(path => {
-
-        const cuisine = this.afs.collection<Cuisine>('cuisine');
-        cuisine.add({ name: this.cuisineName.value, imagePath: path }).then(b => {
+    if (this.id == 'new') {
+      const ref = this.storage.ref('images/' + this.cuisineImage.value);
+      ref.put(this.image).then(a => {
+        ref.getDownloadURL().subscribe(path => {
+          const cuisine = this.afs.collection<Cuisine>('cuisine');
+          cuisine.add({ name: this.cuisineName.value, imagePath: path }).then(b => {
+            this.CuisineForm.reset();
+          });
+        });
+      });
+    } else {
+      if (this.cuisinePayload.get('imagePath') != this.cuisineImage.value) {
+        const ref = this.storage.ref('images/' + this.cuisineImage.value);
+        ref.put(this.image).then(a => {
+          ref.getDownloadURL().subscribe(path => {
+            this.cuisinePayload.ref.update({ name: this.cuisineName.value, imagePath: path }).then(b => {
+              this.CuisineForm.reset();
+            });
+          });
+        });
+      } else {
+        this.cuisinePayload.ref.update({ name: this.cuisineName.value }).then(b => {
           this.CuisineForm.reset();
         });
-      })
-    });
+      }
+    }
+
   }
 
   async getCuisine() {
     (await this.cuisineService.getCuisine(this.id)).subscribe(cuisine => {
       this.cuisinePayload = cuisine.payload;
       console.log(cuisine.payload.get('name'));
-      cuisine.payload.ref.update({});
+      this.initialize();
     });
   }
 }

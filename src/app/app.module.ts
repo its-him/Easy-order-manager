@@ -22,6 +22,7 @@ import { DishComponent } from './dish/dish.component';
 import { CuisineAddComponent } from './cuisine-add/cuisine-add.component';
 import { DishAddComponent } from './dish-add/dish-add.component';
 import { CuisineBoxComponent } from './cuisine-box/cuisine-box.component';
+import { DishBoxComponent } from './dish-box/dish-box.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { CuisineBoxComponent } from './cuisine-box/cuisine-box.component';
     DishComponent,
     CuisineAddComponent,
     DishAddComponent,
-    CuisineBoxComponent
+    CuisineBoxComponent,
+    DishBoxComponent
   ],
   imports: [
     BrowserModule,

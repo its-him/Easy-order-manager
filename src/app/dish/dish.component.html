@@ -1,7 +1,13 @@
 <div class="container">
   <div class="d-flex flex-row-reverse">
-    <button class="btn btn-add text-uppercase" [routerLink]="['/dish']">Add dish</button>
+    <button class="btn btn-add text-uppercase" [routerLink]="['/dish','new']">Add dish</button>
   </div>
 
-  
+  <div class="row">
+    <ng-container *ngFor="let dish of dishes | async; let i = index">
+      <div class="col-3">
+        <dish-box [dish]="dish"></dish-box>
+      </div>
+    </ng-container>
+  </div>
 </div>
