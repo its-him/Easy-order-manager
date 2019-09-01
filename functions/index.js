@@ -1,7 +1,9 @@
 const functions = require('firebase-functions');
 
-// const admin = require('firebase-admin');
-// admin.initializeApp();
+const admin = require('firebase-admin');
+admin.initializeApp();
+
+const db = admin.firestore();
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -14,15 +16,39 @@ const functions = require('firebase-functions');
 exports.deleteCuisine = functions.firestore
   .document('cuisine/{cuisineId}')
   .onDelete((snap, context) => {
-
-    const ref = snap.ref;
-    // const dish = ref.parent.doc('dish/{dishId}')
-    // console.log(dish);
-    // console.log("Parent :" + ref.parent.doc("dish/{dishId}").set({name:"working"}));
-
     const cuisineName = snap.get('name');
-    console.log("Name :" + cuisineName);
-    return ref.parent.parent.doc("dish").set({
-      name: "working"
-    });
+
+    const dishRef = db.collection('dish');
+    const query = dishRef.where('cuisine', '==', cuisineName)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(async (dishes) => {
+          await dishes.ref.delete();
+        });
+        return null;
+      });
+    return null;
+  });
+
+
+
+
+exports.updateCuisine = functions.firestore
+  .document('cuisine/{cuisineId}')
+  .onUpdate((snap, context) => {
+    const newName = snap.after.get('name');
+    const oldName = snap.before.get('name');
+    
+    const dishRef = db.collection('dish');
+    const query = dishRef.where('cuisine', '==', oldName)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(async (dishes) => {
+          await dishes.ref.update({
+            cuisine: newName
+          });
+        });
+        return null;
+      });
+    return null;
   })
