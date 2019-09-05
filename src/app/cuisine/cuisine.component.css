@@ -15,3 +15,8 @@
   color: white !important;
 }
 
+
+.cuisine-search {
+  border-radius: 2rem;
+  border: #407088 1px solid;
+}

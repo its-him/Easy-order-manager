@@ -10,8 +10,8 @@ import { DocumentChangeAction } from '@angular/fire/firestore';
   styleUrls: ['./cuisine.component.css']
 })
 export class CuisineComponent implements OnInit {
-  cuisines: Observable<DocumentChangeAction<Cuisine>[]>;
-
+  cuisines: DocumentChangeAction<Cuisine>[];
+  filterCuisine: DocumentChangeAction<Cuisine>[];
 
   constructor(private cuisineService: CuisineService) { }
 
@@ -20,9 +20,15 @@ export class CuisineComponent implements OnInit {
   }
 
   async getCusine() {
-    this.cuisines = await this.cuisineService.getAllCuisine();
+    (await this.cuisineService.getAllCuisine()).subscribe(cuisine => {
+      this.cuisines = cuisine;
+      this.filterCuisine = cuisine;
+    });
+  }
 
-    // console.log(await this.cuisineService.getCuisine());
-    // this.cuisines = await this.cuisineService.getCuisine();
+  filter(value) {
+    this.filterCuisine = (value) ?
+      this.cuisines.filter(cuisine => cuisine.payload.doc.get('name').toLowerCase().includes(value.toLowerCase())) :
+      this.cuisines;
   }
 }

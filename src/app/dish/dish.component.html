@@ -1,10 +1,15 @@
 <div class="container">
-  <div class="d-flex flex-row-reverse">
+
+  <div>
+    <input #query (keyup)="filter(query.value)" type="text" class="form-control cuisine-search"
+      placeholder="Search Dish . . . .">
+  </div>
+  <div class="d-flex flex-row-reverse mt-3">
     <button class="btn btn-add text-uppercase" [routerLink]="['/dish','new']">Add dish</button>
   </div>
 
   <div class="row">
-    <ng-container *ngFor="let dish of dishes | async; let i = index">
+    <ng-container *ngFor="let dish of filterDishes ">
       <div class="col-3">
         <dish-box [dish]="dish"></dish-box>
       </div>

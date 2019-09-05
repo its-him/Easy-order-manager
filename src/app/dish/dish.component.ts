@@ -11,7 +11,8 @@ import { DocumentChangeAction } from '@angular/fire/firestore';
   styleUrls: ['./dish.component.css']
 })
 export class DishComponent implements OnInit {
-  dishes: Observable<DocumentChangeAction<Dish>[]>;
+  dishes: DocumentChangeAction<Dish>[];
+  filterDishes: DocumentChangeAction<Dish>[];
 
   constructor(
     private dishService: DishService
@@ -22,8 +23,17 @@ export class DishComponent implements OnInit {
   }
 
   async getCusine() {
-    this.dishes = await this.dishService.getAllDish();
+    (await this.dishService.getAllDish()).subscribe(dishes => {
+      this.dishes = dishes;
+      this.filterDishes = dishes;
+    });
     // console.log(this.dishes);
+  }
+
+  filter(value) {
+    this.filterDishes = (value) ?
+      this.dishes.filter(cuisine => cuisine.payload.doc.get('name').toLowerCase().includes(value.toLowerCase())) :
+      this.dishes;
   }
 
 }
