@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 
+//  For access other documents
 const admin = require('firebase-admin');
 admin.initializeApp();
 
@@ -13,6 +14,7 @@ const db = admin.firestore();
 // });
 
 
+// to delete dish corresponds to the deleted cuisine
 exports.deleteCuisine = functions.firestore
   .document('cuisine/{cuisineId}')
   .onDelete((snap, context) => {
@@ -32,7 +34,7 @@ exports.deleteCuisine = functions.firestore
 
 
 
-
+// to update cuisine name in dishes as original cuisine name changed
 exports.updateCuisine = functions.firestore
   .document('cuisine/{cuisineId}')
   .onUpdate((snap, context) => {
