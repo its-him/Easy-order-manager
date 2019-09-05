@@ -1,23 +1,14 @@
 <div class="d-flex justify-content-center mt-3">
-  <div class="cuisine-container">
-    <div class="row mt-1">
-      <div class="col-4 ">
-        <div class="img-div">
-          <img class="d-flex align-items-center" [src]="cuisine.payload.doc.get('imagePath')" alt="">
-        </div>
-      </div>
-      <div class="col-8">
-        <div class="cuisine-name">
-          {{cuisine.payload.doc.get('name')}}
-        </div>
-        <div class="row mt-3">
-          <div class="col">
-            <button class="btn btn-edit" [routerLink]="['/cuisine',cuisine.payload.doc.id]">EDIT</button>
-          </div>
-          <div class="col">
-            <button class="btn btn-delete" (click)="delete()">DELETE</button>
-          </div>
-        </div>
+  <div class="card" style="width: 13rem;">
+    <div class="img-div">
+      <img class="card-img-top" [src]="cuisine.payload.doc.get('imagePath')">
+    </div>
+    <div class="card-body ">
+      <h5 class="card-title text-center">{{ cuisine.payload.doc.get('name') }}</h5>
+      <div class="d-flex mt-4">
+        <div><button class="btn btn-edit" [routerLink]="['/cuisine',cuisine.payload.doc.id]"
+            routerLinkActive="router-link-active">EDIT</button></div>
+        <div class="ml-auto"><button class="btn btn-delete" (click)="delete()">DELETE</button></div>
       </div>
     </div>
   </div>

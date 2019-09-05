@@ -1,11 +1,15 @@
 <div class="container">
   <div class="d-flex flex-row-reverse">
-    <button class="btn btn-add text-uppercase" [routerLink]="['/cuisine','new']" routerLinkActive="router-link-active">Add
+    <button class="btn btn-add text-uppercase" [routerLink]="['/cuisine','new']"
+      routerLinkActive="router-link-active">Add
       cuisine</button>
   </div>
 
-  <div *ngFor="let cuisine of cuisines | async">
-    <cuisine-box [cuisine]="cuisine"></cuisine-box>
+  <div class="row">
+    <ng-container *ngFor="let cuisine of cuisines | async; let i = index">
+      <div class="col-4">
+        <cuisine-box [cuisine]="cuisine"></cuisine-box>
+      </div>
+    </ng-container>
   </div>
-
 </div>

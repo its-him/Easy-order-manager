@@ -1,32 +1,5 @@
-.cuisine-container {
-  border: #207561 1px solid;
-  border-radius: 0.3rem;
-  width: 45%;
-  height: 9rem;
+.card-body {
   padding: 1rem;
-}
-
-.col-4,
-.col-8 {
-  height: 6rem;
-}
-
-.img-div {
-  /* border: red 1px solid; */
-  height: 100%;
-  width: 100%;
-}
-
-.img-div img {
-  height: 100%;
-  width: 100%;
-}
-
-
-.cuisine-name {
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 1px;
 }
 
 .btn-edit {
@@ -49,4 +22,18 @@
 .btn-delete :hover {
   background-color: #ed1250;
   color: white;
+}
+
+
+.btn {
+  height: 90%;
+  font-size: 70%;
+}
+
+.img-div {
+  height: 14rem;
+}
+
+.img-div img {
+  height: 100%;
 }
