@@ -1,0 +1,52 @@
+<div class="container mt-2">
+  <table class="table" border="1">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Sr No</th>
+        <th scope="col">Table Number</th>
+        <th scope="col">Details</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="orders">
+      <tr *ngFor="let order of orders;let i = index">
+        <td>{{ (i+1 )}}</td>
+        <td>{{ order.payload.doc.get("tableNumber") || 0}}</td>
+        <td><button class="btn btn-primary" (click)="open(order.payload.doc.get('items'))">Details</button></td>
+        <td *ngIf="order.payload.doc.get('status') == 0">Placed</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Order Details</h4>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <table class="table" border="1">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Dish Name</th>
+                <th scope="col">Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of content">
+                <td> {{i.name}} </td>
+                <td> {{i.quantity}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>

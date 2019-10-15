@@ -9,12 +9,11 @@ export class OrderService {
 
   constructor(private afs: AngularFirestore) { }
 
-  async getAllOrder() {
-    const order = await this.afs.collection('order').snapshotChanges();
-    return order;
+  getAllOrder() {
+    return this.afs.collection('order').snapshotChanges();
   }
 
   updateOrder(orderId: string) {
-    this.afs.collection('order').doc(orderId).update({status: 1})
+    this.afs.collection('order').doc(orderId).update({ status: 1 })
   }
 }
