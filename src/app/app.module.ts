@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 // Firestore
@@ -25,6 +25,7 @@ import { DishAddComponent } from './dish-add/dish-add.component';
 import { CuisineBoxComponent } from './cuisine-box/cuisine-box.component';
 import { DishBoxComponent } from './dish-box/dish-box.component';
 import { OrderComponent } from './order/order.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { OrderComponent } from './order/order.component';
     DishAddComponent,
     CuisineBoxComponent,
     DishBoxComponent,
-    OrderComponent
+    OrderComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,10 @@ import { OrderComponent } from './order/order.component';
     ReactiveFormsModule,
     NgxFileHelpersModule,
     NgbModule
+  ], exports: [
+    OrderDetailsComponent
+  ], entryComponents: [
+    OrderDetailsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

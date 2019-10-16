@@ -1,3 +1,4 @@
+import { OrderDetailsComponent } from './../order-details/order-details.component';
 import { DocumentChangeAction } from '@angular/fire/firestore';
 import { OrderService } from './../services/order.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,12 +20,11 @@ export class OrderComponent implements OnInit {
 
   }
 
-  open(content) {
+  open(content,customization) {
     console.log(content);
-    this.items = content;
-    this.modalService.open(content).result.then((result) => {
-      this.items = null;
-    });
+    const modalRef = this.modalService.open(OrderDetailsComponent);
+    modalRef.componentInstance.items = content;
+    modalRef.componentInstance.customization = customization;
   }
 
   private getDismissReason(reason: any): string {
