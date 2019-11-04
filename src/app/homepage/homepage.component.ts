@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  navOptions = [ 'cuisine', 'dish', 'order'];
-  selectNav = 'order';
+  navOptions = ['cuisine', 'dish', 'order', 'bill'];
+  selectNav = 'cuisine';
 
   constructor() { }
 

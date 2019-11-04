@@ -1,5 +1,5 @@
+import { BillService } from './../services/bill.service';
 import { OrderDetailsComponent } from './../order-details/order-details.component';
-import { DocumentChangeAction } from '@angular/fire/firestore';
 import { OrderService } from './../services/order.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -13,16 +13,18 @@ export class OrderComponent implements OnInit {
   closeResult: string;
   orders;
   items;
-  constructor(private modalService: NgbModal, private orderService: OrderService) { }
+  constructor(private modalService: NgbModal, 
+              private orderService: OrderService, 
+              private billService: BillService) { }
 
   ngOnInit() {
     this.orderService.getAllOrder().subscribe(order => this.orders = order);
-
+    console.log();
   }
 
-  open(content,customization) {
+  open(content, customization) {
     console.log(content);
-    const modalRef = this.modalService.open(OrderDetailsComponent);
+    const modalRef = this.modalService.open(OrderDetailsComponent, { centered: true });
     modalRef.componentInstance.items = content;
     modalRef.componentInstance.customization = customization;
   }
@@ -35,6 +37,10 @@ export class OrderComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  addToBill(orderId: string) {
+    this.billService.addToBill(orderId);
   }
 
 }

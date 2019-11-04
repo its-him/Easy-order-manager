@@ -26,6 +26,7 @@ import { CuisineBoxComponent } from './cuisine-box/cuisine-box.component';
 import { DishBoxComponent } from './dish-box/dish-box.component';
 import { OrderComponent } from './order/order.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { BillComponent } from './bill/bill.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     CuisineBoxComponent,
     DishBoxComponent,
     OrderComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    BillComponent
   ],
   imports: [
     BrowserModule,
